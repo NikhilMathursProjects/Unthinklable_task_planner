@@ -1,0 +1,38 @@
+PROMPT1:
+"""
+    # Break down this goal into actionable tasks with dependencies and estimated timelines.
+    # Return as clean JSON like this:
+    # [
+    #   {{ "task": "Task name", "depends_on": ["Task 1"], "estimated_days": 2 }},
+    #   ...
+    # ]
+
+    # Goal: {goal}
+    # """
+
+
+PROMPT2:
+"""
+    # You are an expert project planner. Your task is to decompose the following goal into a structured, realistic task plan.
+
+    # Each task should have:
+    # - A short, descriptive name
+    # - Dependencies (names of prerequisite tasks, if any)
+    # - An estimated number of days for completion
+
+    # The total timeline should align logically with the goal (for example, if the goal is 'Launch a product in 2 weeks', total estimated days ≈ 14).
+
+    # Output clean JSON ONLY in this format:
+    # [
+    # {{ "task": "Task name", "depends_on": ["Another task"], "estimated_days": 3 }},
+    # {{ "task": "Next task", "depends_on": [], "estimated_days": 2 }}
+    # ]
+
+    # Guidelines:
+    # - Keep task names clear and actionable (e.g., 'Design UI mockups' instead of 'UI design').
+    # - Ensure dependencies make sense (a task should not depend on a future task).
+    # - Balance timelines so they fit within the overall goal duration.
+    # - Avoid extra text, explanations, or markdown formatting.
+
+    # Goal: {goal}
+    # """

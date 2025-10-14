@@ -1,0 +1,8 @@
+fastapi
+flask
+uvicorn
+motor
+google-generativeai
+python-dotenv
+pydantic
+gunicorn
