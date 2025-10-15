@@ -104,7 +104,7 @@ def login_user():
     doc=chats_col.find_one({'user_id':user_id})
     if not doc:
         return jsonify({"Message":"There is no user, please sign up"})
-    return jsonify({"message":'User Logged In','user_id':doc['user_id']})
+    return jsonify({"message":"User Logged In",'user_id':doc['user_id']})
 
 #new chat creator
 @app.route("/create_chat", methods=["POST"])
@@ -230,7 +230,8 @@ def retrieve_previous_messages():
         .limit(n)
     )
     # Reverse so earliest message appears first
-    messages = list(messages)[::-1]
+    # messages = list(messages)[::-1]
+    messages=list(messages)
 
     return jsonify({"messages": messages})
 

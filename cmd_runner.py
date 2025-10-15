@@ -8,10 +8,10 @@ def sign_up()->str:
     if not user_id:
         print("User id cannot be NULL")
         return sign_up()
-    url=f"{BASE_URL}/login"
+    url=f"{BASE_URL}/sign_up"
     data={'user_id':user_id}
     res=requests.post(url,json=data)
-    print(f"{res.json()['message']} with user id: {user_id}")
+    print(f"{res.json()['message']} with user_id: {user_id}")
     return user_id
 
 def login() -> str:
@@ -140,5 +140,14 @@ def run_terminal_chatbot(user_id: str):
             print("Invalid choice, try again.")
 
 if __name__ == "__main__":
-    user_id = login()
+
+    # user_id = login()
+    print("1.Sign Up\n2.Login")
+    choice=int(input())
+    if choice==1:
+        user_id=sign_up()
+    elif choice==2:
+        user_id=login()
+    else:
+        print("Invalid choice")
     run_terminal_chatbot(user_id)
