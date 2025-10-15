@@ -8,12 +8,12 @@ import json
 from db import users_col, chats_col, messages_col
 from dotenv import load_dotenv
 
-
+#Smart task planner
 load_dotenv()
 
 app = Flask(__name__)
 
-# Configure Gemini API
+#example: GOOGLE_API_KEY='akoASDdjf0fdneErisRnuiEFaf' (this is not a real api key)
 genai.configure(api_key=os.getenv("GOOGLE_API_KEY"))
 
 
