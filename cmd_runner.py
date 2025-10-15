@@ -2,12 +2,29 @@ import requests
 
 BASE_URL = "http://127.0.0.1:5000"
 
+def sign_up()->str:
+    """simple sign up"""
+    user_id=input("Enter your User ID:").strip()
+    if not user_id:
+        print("User id cannot be NULL")
+        return sign_up()
+    url=f"{BASE_URL}/login"
+    data={'user_id':user_id}
+    res=requests.post(url,json=data)
+    print(f"{res.json()['message']} with user id: {user_id}")
+    return user_id
+
 def login() -> str:
     """Simple login by entering user_id."""
     user_id = input("Enter your User ID: ").strip()
     if not user_id:
         print("User ID cannot be empty!")
         return login()
+    #passing to /login
+    url=f"{BASE_URL}/login"
+    data={'user_id':user_id}
+    res=requests.post(url,json=data)
+    print(f"{res.json()['message']} with user_id: {user_id}")
     return user_id
 
 def create_new_chat(user_id: str) -> tuple[str, str]:

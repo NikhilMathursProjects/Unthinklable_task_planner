@@ -79,6 +79,33 @@ def generate_task_plan(goal: str) -> str:
     response = model.generate_content(prompt)
     return response.text
 
+@app.route("/sign_up",methods=["POST"])
+def sign_up():
+    data=request.get_json()
+    user_id=data.get("user_id")
+    #creates a new chat and saves the new default chat to mongodb
+    chat_name=f"NewChat_{uuid4().hex[:6]}"
+    chat_doc = {
+        "chat_id": str(uuid4()), #random uuid for chatid
+        "user_id": user_id,
+        "title": chat_name,
+        "created_at": datetime.utcnow().isoformat()
+    }
+    #inserts the chat document into the chats collection, which holds just the chats data for all users
+    chats_col.insert_one(chat_doc)
+    chat_doc["_id"] = str(chat_doc["_id"])
+    return jsonify({"message":"User Created",'user_id':user_id})
+
+
+@app.route("/login",methods=["POST"])
+def login_user():
+    data=request.get_json()
+    user_id=data.get("user_id")
+    doc=chats_col.find_one({'user_id':user_id})
+    if not doc:
+        return jsonify({"Message":"There is no user, please sign up"})
+    return jsonify({"message":'User Logged In','user_id':doc['user_id']})
+
 #new chat creator
 @app.route("/create_chat", methods=["POST"])
 def create_chat():
